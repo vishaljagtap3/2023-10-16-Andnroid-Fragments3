@@ -43,6 +43,7 @@ class QuestionFragment : Fragment() {
 
             parentFragmentManager.beginTransaction()
                 .add(R.id.mainContainer, optionsFragment, null)
+                .addToBackStack("AddOptionsFragment")
                 .commit()
 
             /*requireActivity().supportFragmentManager.beginTransaction()

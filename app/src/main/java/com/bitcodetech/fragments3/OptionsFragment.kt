@@ -87,9 +87,11 @@ class OptionsFragment : Fragment() {
     }*/
 
     private fun removeCurrentFragment() {
-        parentFragmentManager.beginTransaction()
+        /*parentFragmentManager.beginTransaction()
             .remove(this)
-            .commit()
+            .commit()*/
+
+        parentFragmentManager.popBackStack()
     }
 
     private fun initViews(view : View) {
