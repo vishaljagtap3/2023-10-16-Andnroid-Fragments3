@@ -36,7 +36,9 @@ class QuestionFragment : Fragment() {
 
     private fun initListeners() {
         btnShowOptions.setOnClickListener {
+
             val optionsFragment = OptionsFragment()
+            optionsFragment.onOptionSelectedListener = MyOnOptionSelectedListener()
 
 
             parentFragmentManager.beginTransaction()
@@ -46,6 +48,12 @@ class QuestionFragment : Fragment() {
             /*requireActivity().supportFragmentManager.beginTransaction()
                 .add(R.id.mainContainer, optionsFragment, null)
                 .commit()*/
+        }
+    }
+
+    private inner class MyOnOptionSelectedListener : OptionsFragment.OnOptionSelectedListener {
+        override fun onOptionSelected(option: String) {
+            selectedOption = option
         }
     }
 

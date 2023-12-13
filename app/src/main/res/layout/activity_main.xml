@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <fragment
+        android:tag="questionfragment"
         android:id="@+id/questionFragment"
         android:name="com.bitcodetech.fragments3.QuestionFragment"
         android:layout_width="match_parent"

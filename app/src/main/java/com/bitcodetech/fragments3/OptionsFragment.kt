@@ -13,6 +13,14 @@ class OptionsFragment : Fragment() {
     private lateinit var txtNo : TextView
     private lateinit var txtMayBe : TextView
 
+
+    interface OnOptionSelectedListener {
+        fun onOptionSelected(option : String)
+    }
+
+    var onOptionSelectedListener : OnOptionSelectedListener? = null
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,7 +34,44 @@ class OptionsFragment : Fragment() {
         return view
     }
 
+    //way 3 final way
     private fun initListeners() {
+        txtYes.setOnClickListener {
+            if(onOptionSelectedListener != null) {
+                onOptionSelectedListener!!.onOptionSelected("Yes")
+            }
+            removeCurrentFragment()
+        }
+        txtNo.setOnClickListener {
+            onOptionSelectedListener?.onOptionSelected("No")
+            removeCurrentFragment()
+        }
+        txtMayBe.setOnClickListener {
+            onOptionSelectedListener?.onOptionSelected("May Be")
+            removeCurrentFragment()
+        }
+    }
+
+
+    //way 2 - fragment to fragment
+    //limitation is, the OptionsFragment only communicates with QuestionFragment
+   /* private fun initListeners() {
+        txtYes.setOnClickListener {
+            (parentFragmentManager.findFragmentById(R.id.questionFragment) as QuestionFragment).selectedOption = "Yes"
+            removeCurrentFragment()
+        }
+        txtNo.setOnClickListener {
+            (parentFragmentManager.findFragmentById(R.id.questionFragment) as QuestionFragment).selectedOption = "No"
+            removeCurrentFragment()
+        }
+        txtMayBe.setOnClickListener {
+            (parentFragmentManager.findFragmentById(R.id.questionFragment) as QuestionFragment).selectedOption = "May Be"
+            removeCurrentFragment()
+        }
+    }*/
+
+    //way 1 via activity
+    /*private fun initListeners() {
         txtYes.setOnClickListener {
             (requireActivity() as MainActivity).setSelectedOption("Yes")
             removeCurrentFragment()
@@ -39,7 +84,7 @@ class OptionsFragment : Fragment() {
             (requireActivity() as MainActivity).setSelectedOption("May Be")
             removeCurrentFragment()
         }
-    }
+    }*/
 
     private fun removeCurrentFragment() {
         parentFragmentManager.beginTransaction()

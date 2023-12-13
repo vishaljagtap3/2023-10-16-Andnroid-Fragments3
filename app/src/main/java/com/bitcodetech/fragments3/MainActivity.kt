@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //way 1
     fun setSelectedOption(selectedOption : String) {
         questionFragment.selectedOption = selectedOption
     }
